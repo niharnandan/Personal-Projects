@@ -1,2 +1,2 @@
-Hello\n
+Hello
 Will update instructions soon
