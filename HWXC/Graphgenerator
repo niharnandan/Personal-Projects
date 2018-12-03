@@ -1,0 +1,31 @@
+names = {}
+f1 = open('Names.txt')
+f2 = open('demo.dot','w+')
+line = " "
+while line:
+	line = f1.readline()
+	line = line[10:]
+	line = line.rstrip()
+	name1 = line.split("-->")
+	if name1 != ['']:
+		name2 = name1[1].split("***")
+	for x in name2:
+		if x:
+			if x in names.keys():			
+				if name1[0] in names[x]:
+					continue
+				else:
+					names.update({name1[0]:[]})
+					names[name1[0]].append(x.rstrip())
+			else:
+				if name1[0] not in names.keys():
+					names.update({name1[0]:[]})
+				names[name1[0]].append(x.rstrip())
+
+print("graph g\n{",file=f2)
+for x in names.keys():
+	if x:
+		for y in names[x]:
+			if y:
+				print("\"",x,"\" -- \"",y,"\"",file=f2)
+print("}",file=f2)
